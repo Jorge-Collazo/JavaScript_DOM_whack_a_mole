@@ -8,6 +8,7 @@ let lastHole;
 let timeUp = false;
 let score = 0;
 let countdown;
+let timeLimit = 20000;
 function pickRandomHole(holes) {
     const randomHole = Math.floor(Math.random() * holes.length);
     const hole = holes[randomHole];
@@ -27,11 +28,9 @@ function popOut() {
         if(!timeUp) popOut();
     }, time);
 }
-
-popOut();
 //step 3 dynamically change text content to countdown//
 function startGame() {
-    countdown = timeList/20;
+    countdown = timeLimit/20;
     scoreBoard.textContent = 0;
     scoreBoard.getElementsByClassName.display = 'block';
     countdownBoard.textContent = countdown;
@@ -41,9 +40,31 @@ function startGame() {
     setTimeout(function(){
         timeUp = true;
     }, timeLimit );
-    let startCountdown = setInterval;
+    let startCountdown = setInterval(function(){
+        countdown -= 1;
+        countdownBoard.textContent;
+        if (countdown < 0){
+            countdown = 0;
+            clearInterval(startCountdown);
+            countdownBoard.textContent= 'Times up!! Thank you now get out';
+        }
+    },1000);
 }
 
 //step 4 adding event listeners//
 
+startButton.addEventListener('click', startGame);
+
+function whack(e){
+    score++;
+    this.style.backgroundImage = 'url("yoda2.png")';
+    this.style.pointerEvents = 'none';
+    setTimeout(() => {
+        this.stlye.backgroundImage = 'url("yoda1.png")';
+        this.sytle.pointerRvents =  'all'
+    }, 800)
+}   scoreBoard.textContent = score;
+
 //step 5 keep track of score with forEach//
+
+moles.forEach(mole => mole.addEventListener('click', whack));
