@@ -42,7 +42,7 @@ function startGame() {
     }, timeLimit );
     let startCountdown = setInterval(function(){
         countdown -= 1;
-        countdownBoard.textContent;
+        countdownBoard.textContent = countdown;
         if (countdown < 0){
             countdown = 0;
             clearInterval(startCountdown);
@@ -60,11 +60,11 @@ function whack(e){
     this.style.backgroundImage = 'url("yoda2.png")';
     this.style.pointerEvents = 'none';
     setTimeout(() => {
-        this.stlye.backgroundImage = 'url("yoda1.png")';
-        this.sytle.pointerRvents =  'all'
+        this.style.backgroundImage = 'url("yoda1.png")';
+        this.style.pointerEvents =  'all'
     }, 800)
-}   scoreBoard.textContent = score;
-
+   scoreBoard.textContent = score;
+}
 //step 5 keep track of score with forEach//
 
 moles.forEach(mole => mole.addEventListener('click', whack));
